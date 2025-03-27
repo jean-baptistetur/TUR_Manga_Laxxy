@@ -10,7 +10,7 @@ try {
     $dbPDO->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     echo "Connexion réussie à la base de données"; 
     
-echo "<h1>Top 5 manga</h1>";
+echo "<h1>Top 5 manga :</h1>";
 
 $resultat = "SELECT * FROM manga";
 $manga = $dbPDO->prepare($resultat);
@@ -18,10 +18,11 @@ $manga->execute();
 
 $manga = $manga->fetchAll(PDO::FETCH_ASSOC);
 echo "</ul>";
+$i=1;
 foreach($manga as $mangas) {
    
-   echo "<li>Manga : ". $mangas['Titre']. "sorti en ". $mangas['Année de publication']."<br><br></li>";
-   
+   echo "<li>Manga n°$i : ". $mangas['Titre']. "sorti en ". $mangas['Année de publication']."<br><br></li>";
+   $i++;
 }
 echo "</ul>";
 } catch(PDOException $e) {
