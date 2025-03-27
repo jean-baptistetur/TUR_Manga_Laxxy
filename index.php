@@ -12,16 +12,16 @@ try {
     
 echo "<h1>Top 5 manga :</h1>";
 
-$resultat = "SELECT * FROM manga";
+$resultat = "SELECT * FROM manga ORDER BY 'Année de publication' ASC";
 $manga = $dbPDO->prepare($resultat);
 $manga->execute();
 
 $manga = $manga->fetchAll(PDO::FETCH_ASSOC);
-echo "</ul>";
+echo "<ul>";
 $i=1;
 foreach($manga as $mangas) {
    
-   echo "<li>Manga n°$i : ". $mangas['Titre']. "sorti en ". $mangas['Année de publication']."<br><br></li>";
+   echo "<li>" ."Manga n°$i : ". '<a href="../Partiel Web/manga.php" target="_blank">' .$mangas['Titre']. "</a>". " sorti en ". $mangas['Année de publication']. " avec une note de ". $mangas['note']. " sur 10" ."<br><br></li>";
    $i++;
 }
 echo "</ul>";
